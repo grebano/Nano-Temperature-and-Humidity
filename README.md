@@ -1,4 +1,4 @@
-# Nano-Temperature-and-Humidity# Nano-Temperature-and-Humidity
+# Nano-Temperature-and-Humidity
 
 This project is about creating a temperature and humidity sensor using Arduino Nano, a 0.96" OLED display, and an AHT10 (or AHT20) sensor. The project is developed using PlatformIO.
 
