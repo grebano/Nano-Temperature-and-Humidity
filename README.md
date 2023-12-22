@@ -7,6 +7,10 @@ This project is about creating a temperature and humidity sensor using Arduino N
 - Arduino Nano
 - 0.96" OLED display
 - AHT10 sensor
+- Breadboard
+- Jumper wires
+- USB cable
+- 5V power supply (optional)
 
 ## Software Requirements
 
