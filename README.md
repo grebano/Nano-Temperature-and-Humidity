@@ -34,6 +34,7 @@ Notice that the first image shows the schematic of the project realized on a bre
 ## Code
 
 The main code for the project is in `src/main.cpp`. The code is well commented and should be easy to understand. It is divided into two parts: the first part is the setup and the second part is the loop. The setup part is used to initialize the OLED display and the AHT10 sensor. The loop part is used to read the temperature and humidity from the sensor and display them on the OLED display.
+The LowPower library is used to put the Arduino Nano to sleep for 120 seconds between each reading. This is done to save power.
 
 ## License
 
