@@ -1,9 +1,11 @@
 #include <Adafruit_AHTX0.h>
 #include <Adafruit_SSD1306.h>
+#include <LowPower.h>
 
-Adafruit_AHTX0 aht;
-Adafruit_SSD1306 display(128, 64, &Wire, -1);
+Adafruit_AHTX0 aht; // connect AHT10 sensor to I2C
+Adafruit_SSD1306 display(128, 64, &Wire, -1); // connect OLED display to I2C
 
+// logo bitmap
 const unsigned char myBitmap [] PROGMEM = {
   0x00, 0x01, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 
   0x00, 0x07, 0xe0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 
@@ -72,23 +74,20 @@ const unsigned char myBitmap [] PROGMEM = {
 };
 
 void setup() {
-  Serial.begin(9600);
-  Serial.println("Adafruit AHT10/AHT20 demo!");
 
-  if (! aht.begin()) {
-    Serial.println("Could not find AHT? Check wiring");
-    while (1) delay(10);
+  // initialize aht10 sensor
+  while (! aht.begin()) {
+    delay(10);
   }
-  Serial.println("AHT10 or AHT20 found");
-
-  // SSD1306_SWITCHCAPVCC = generate display voltage from 3.3V internally
-  if(!display.begin(SSD1306_SWITCHCAPVCC, 0x3C)) { // Address 0x3C for 128x64
-    Serial.println(F("SSD1306 allocation failed"));
-    for(;;); // Don't proceed, loop forever
+  
+  // initialize display
+  while(!display.begin(SSD1306_SWITCHCAPVCC, 0x3C)) { // Address 0x3C for 128x64
+    delay(10);
   }
 }
 
-void loop() {
+// refresh data and display on OLED
+void refresh_data_display() {
   // populate temp and humidity objects with fresh data
   sensors_event_t humidity, temp;
   aht.getEvent(&humidity, &temp);
@@ -121,5 +120,13 @@ void loop() {
   
   // display all
   display.display(); 
-  delay(5000);
+}
+
+void loop() {
+  refresh_data_display();
+
+  // sleep 120 seconds
+  for (int i = 0; i < 15; i++) {
+    LowPower.powerDown(SLEEP_8S, ADC_OFF, BOD_OFF); 
+  }
 }
