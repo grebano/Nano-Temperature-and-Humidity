@@ -74,6 +74,9 @@ const unsigned char myBitmap [] PROGMEM = {
 };
 
 void setup() {
+  // divide clock by 2
+  CLKPR = 0x80;
+  CLKPR = 0x01;
 
   // initialize aht10 sensor
   while (! aht.begin()) {
