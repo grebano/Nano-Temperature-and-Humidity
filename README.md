@@ -53,7 +53,7 @@ The last thing that is done to lower the power consumption is to reduce the brig
 |      11mA     |       26mA     |            1       |   5V    |       16MHz     |     Yes   |
 |      14mA     |       23mA     |          255       |   5V    |        8MHz     |     Yes   |
 |      11mA     |       20mA     |            1       |   5V    |        8MHz     |     Yes   |
-|       8mA     |       18mA     |            1       |   5V    |        8MHz     |     No    |
+|       8mA     |       17mA     |            1       |   5V    |        8MHz     |     No    |
 
 The best scenario is to have the display brightness at 1, the clock frequency at 8MHz, and the LED power off. This will result in a power draw of 8mA for most of the time. The power draw will increase to 18mA for a short period of time when the temperature and humidity is read from the sensor.
 The clock has been set to 8MHz in order to be able to use a 3.7V lipo battery as a power supply. The Arduino Nano can in fact be powered by a 3.7V lipo battery, but the clock frequency has to be lowered to 8MHz in order to remain in safe operating area.
