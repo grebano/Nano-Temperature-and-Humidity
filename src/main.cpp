@@ -109,6 +109,7 @@ void refresh_data_display() {
   display.display(); 
 }
 
+// set display contrast
 void setContrast(Adafruit_SSD1306 *display, uint8_t contrast)
 {
     display->ssd1306_command(SSD1306_SETCONTRAST);
@@ -130,7 +131,7 @@ void setup() {
     delay(10);
   }
 
-  // set display contrast
+  // set display contrast 
   setContrast(&display, 0x01);
 }
 
