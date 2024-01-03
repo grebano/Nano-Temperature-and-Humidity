@@ -45,7 +45,19 @@ CLKPR = 0x01;
 ```
 The first line sets the CLKPCE bit in CLKPR to enable a change in the clock prescaler. The second line sets the CLKPS0 bit in CLKPR to divide the clock by 2.
 
-The last thing that is done to lower the power consumption is to reduce the brightness of the OLED display. This is used to reduce the power consumption of the display that is always on. 
+The last thing that is done to lower the power consumption is to reduce the brightness of the OLED display. This is relevant, since the display that is always on. 
+
+## Power draw
+| Sleep Current | Active Current | Display Brightness | Voltage | Clock Frequency | LED Power |
+|---------------|----------------|--------------------|---------|-----------------|-----------|
+|      11mA     |       26mA     |            1       |   5V    |       16MHz     |     Yes   |
+|      14mA     |       23mA     |          255       |   5V    |        8MHz     |     Yes   |
+|      11mA     |       20mA     |            1       |   5V    |        8MHz     |     Yes   |
+|       8mA     |       18mA     |            1       |   5V    |        8MHz     |     No    |
+
+The best scenario is to have the display brightness at 1, the clock frequency at 8MHz, and the LED power off. This will result in a power draw of 8mA for most of the time. The power draw will increase to 18mA for a short period of time when the temperature and humidity is read from the sensor.
+The clock has been set to 8MHz in order to be able to use a 3.7V lipo battery as a power supply. The Arduino Nano can in fact be powered by a 3.7V lipo battery, but the clock frequency has to be lowered to 8MHz in order to remain in safe operating area.
+
 
 ## License
 
