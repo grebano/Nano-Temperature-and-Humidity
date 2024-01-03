@@ -73,22 +73,6 @@ const unsigned char myBitmap [] PROGMEM = {
   0x00, 0x00, 0x00, 0x00, 0x1f, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
 };
 
-void setup() {
-  // divide clock by 2
-  CLKPR = 0x80;
-  CLKPR = 0x01;
-
-  // initialize aht10 sensor
-  while (! aht.begin()) {
-    delay(10);
-  }
-  
-  // initialize display
-  while(!display.begin(SSD1306_SWITCHCAPVCC, 0x3C)) { // Address 0x3C for 128x64
-    delay(10);
-  }
-}
-
 // refresh data and display on OLED
 void refresh_data_display() {
   // populate temp and humidity objects with fresh data
@@ -123,6 +107,31 @@ void refresh_data_display() {
   
   // display all
   display.display(); 
+}
+
+void setContrast(Adafruit_SSD1306 *display, uint8_t contrast)
+{
+    display->ssd1306_command(SSD1306_SETCONTRAST);
+    display->ssd1306_command(contrast);
+}
+
+void setup() {
+  // divide clock by 2
+  CLKPR = 0x80;
+  CLKPR = 0x01;
+
+  // initialize aht10 sensor
+  while (! aht.begin()) {
+    delay(10);
+  }
+  
+  // initialize display
+  while(!display.begin(SSD1306_SWITCHCAPVCC, 0x3C)) { // Address 0x3C for 128x64
+    delay(10);
+  }
+
+  // set display contrast
+  setContrast(&display, 0x01);
 }
 
 void loop() {
