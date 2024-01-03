@@ -26,7 +26,7 @@ This project is about creating a temperature and humidity sensor using Arduino N
 
 Here are some images of the project:
 
-![Image 1](./images/Temperature_and_Humidity.png)
+![Image 1](./images/Temperature_and_Humidity_v2.png)
 ![Image 2](./images/RealPic.jpg)
 
 Notice that the first image shows the schematic of the project realized on a breadboard. The second image shows the actual project.
